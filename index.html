@@ -47,10 +47,14 @@
                                 name="fname" 
                                 id="fname" 
                                 maxlength="30" 
-                                minlength="2"
-                                title="Enter First Name"
+                                minlength="1"
+                                title="Letters, apostrophes, and dashes only"
+                                pattern="[a-zA-Z']{1,30}"
+                                onblur="validateFname()"
+                                placeholder="John"
                                 required
                                 />
+                                <span class="error" id="fname-error"></span>
                             </td>
 
                         <td><label for="minitial">Middle Initial:</label></td>
@@ -60,8 +64,12 @@
                                 name="minitial" 
                                 id="minitial" 
                                 maxlength="1" 
-                                title="Enter Middle Initial"
+                                title="Letters only"
+                                pattern="[a-zA-Z']{0,1}"
+                                onblur="validateMinitial()"
+                                placeholder="M"
                                 />
+                                <span class="error" id="minitial-error"></span>
                             </td>
 
                         <td><label for="lname">Last Name:</label></td>
@@ -74,7 +82,12 @@
                                 minlength="2" 
                                 title="Enter Last Name"
                                 required
+                                pattern="[a-zA-Z']{1,30}"
+                                onblur="validateLname()"
+                                placeholder="Doe"
+                                required
                                 />
+                                <span class="error" id="lname-error"></span>
                             </td>
                         </td>
                     </tr>
