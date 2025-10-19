@@ -100,3 +100,51 @@ p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: normal;
 }
+
+//error message styling
+.error {
+    color: Pick a color;
+    font-size: medium;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    
+    font-weight: normal;
+}
+
+//pass validation message styling
+.pword-message {
+     text-align: right;
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     font-weight: normal;
+     position: relative;
+     left: 100px;
+     background: transparent;
+     padding: 10px;
+     border-spacing: 2px;
+     border-radius: 20px;
+     color: grey;
+}
+
+//review button style
+#review {
+    margin-top: 5px;
+}
+
+//Output Table style
+table.output,
+tr.output,
+td.output {
+    width: 500px;
+    background-color: grey;
+    padding: 10px;
+    border-spacing: 2px;
+    border-radius: 20px;
+    color: grey;
+}
+
+//individual cell style
+td.output {
+    width: 500 px;
+    background-color: grey;
+    padding: 10px;
+    border-spacing: 2px;
+}
+ 
