@@ -135,20 +135,31 @@
                     <tr>
                         <td><label for="dob">Date of Birth:</label></td>
                         <td>
-                            <input type="date" id="dob" name="dob" required>
+                            <input 
+                                type="date" 
+                                id="dob" 
+                                name="dob"
+                                onblur="validateDob()"
+                                required
+                            />
+                            <span class="error" id="dob-error"></span>
                         </td>
 
                         <td><label for="ssn">Social Security Number:</label></td>
                         <td>
                             <input 
                             type="password"
-                            id="ssn"
                             name="ssn"
+                            id="ssn"
                             maxlength="11"
+                            minlength="9"
+                            title="Numbers only"
                             pattern="\d{3}-\d{2}-\d{4}" 
                             placeholder="123-45-6789"
+                            onblur="validateSsn()"
                             required
                             />
+                            <span class="error" id="ssn-error"></span>
                         </td>
                     </tr>
 
@@ -167,8 +178,10 @@
                             name="address1" 
                             id="address1" 
                             maxlength="30"
+                            onblur="validateAddress1()"
                             required 
                             />
+                            <span class="error" id="address1-error"></span>
                         </td>
                         <td><label for="address2">Address Line 2:</label></td>
                         <td>
@@ -177,7 +190,9 @@
                             name="address2" 
                             id="address2" 
                             maxlength="30" 
+                            onblur="validateAddress2()"
                             />
+                            <span class="error" id="address2-error"></span>
                         </td>
                     </tr>
                     <tr>
@@ -259,9 +274,13 @@
                             id="zip" 
                             maxlength="10"
                             minlength="5"
-                            title="Enter zip" 
+                            title="Numbers and a dash only"
+                            placeholder="12345"
+                            pattern="^\d{5}(-\d{4})?$"
+                            onblur="validateZcode()"
                             required 
                             />
+                            <span class="error" id="zip-error"></span>
                         </td>
                     </tr>
                     <tr>
@@ -272,6 +291,7 @@
                             name="phone" 
                             id="phone" 
                             title="Enter phone number" 
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             placeholder="123-456-7890"
                             maxlength="10"
                             minlength="10"
@@ -288,7 +308,8 @@
                             name="email" 
                             maxlength="50" 
                             placeholder="name@domain.tld" 
-                            title="Enter a valid email address" 
+                            title="Enter a valid email address"
+                            pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,20}$"
                             required
                             >
                         </td>
@@ -356,6 +377,9 @@
                             name="pword" 
                             id="pword" 
                             minlength="10" 
+                            onblur="validatePword()"
+                            oninput="validatePword()"
+                            onfocus="validatePword()"
                             required
                             />
                         </td>
@@ -367,9 +391,13 @@
                             type="password" 
                             name="pword2" 
                             id="pword2" 
-                            minlength="10" 
+                            minlength="10"
+                            onblur="confirmPword()"
+                            oninput="confirmPword()"
+                            onfocus="confirmPword()"
                             required
                             />
+                            <span class="error" id="pword2-error"></span>
                         </td>
                     </tr>
                     <tr>
@@ -377,11 +405,29 @@
                             <center>
                                 <input type="submit" name="submit">
                                 <input type="reset" name="reset">
+                                <input 
+                                    type="button" 
+                                    name="review"
+                                    id="review"
+                                    value="Review"
+                                    onclick="reviewInput()"
+                                />
                             </center>
                         </td>
                     </tr>
-
                 </table>
+                
+                <div class="pword-message">
+                    <span id="msg1"></span> <br/>
+                    <span id="msg2"></span> <br/>
+                    <span id="msg3"></span> <br/>
+                    <span id="msg4"></span> <br/>
+                </div>
+
+                <center>
+                    <p id="showInput"></p>
+                </center>
+                
             </div>
         </center>
 
