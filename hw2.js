@@ -21,7 +21,7 @@ slider.oninput = function () {
 };
 
 //date of birth validation
-function validationDob() {
+function validateDob() {
     dob = document.getElementById("dob");
     let date = new Date(dob.value);
     let maxDate = new Date().setFullYear(new Date().getFullYear() - 120);
@@ -59,7 +59,7 @@ function validateSsn() {
 
 //zip code validation
 function validateZcode() {
-    const zipInput = document.getElementById("zcode-error").innerHTML = 
+    const zipInput = document.getElementById("zcode").innerHTML = 
     let zip = zipInput.value.replace(/[^\d-]/g, "");
 
     if (!zip) {
