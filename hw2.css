@@ -124,9 +124,14 @@ p {
 }
 
 //review button style
-#review {
+#review,
+input[type="submit"],
+input[type="reset"] {
+    display: block;
+    margin: 10px auto;
     margin-top: 5px;
 }
+
 
 //Output Table style
 table.output,
