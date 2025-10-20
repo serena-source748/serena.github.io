@@ -131,7 +131,10 @@ input[type="reset"] {
     margin: 10px auto;
     margin-top: 5px;
 }
-
+td[colspan="4"] center {
+    text-align: center;
+    display: block;
+}
 
 //Output Table style
 table.output,
