@@ -7,9 +7,11 @@ Description: Homework 2 HTML Patient Registration Form
 */
 
 //date code
+window.onload = function() {
 const d = new Date();
 let text = d.toLocaleDateString();
 document.getElementById("today").innerHTML=text;
+};
 
 //household slider code
 let slider = document.getElementById("household");
