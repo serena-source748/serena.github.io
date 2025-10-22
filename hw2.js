@@ -9,7 +9,7 @@ Description: Homework 2 HTML Patient Registration Form
 //date code
 const d = new Date();
 let text = d.toLocaleDateString();
-document.getElementById("today").innerHTML = text;
+document.getElementById("today").textContent = "TEST DATE";
 
 //household slider code
 let slider = document.getElementById("household");
