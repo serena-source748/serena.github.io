@@ -292,9 +292,11 @@
                             id="phone" 
                             title="Enter phone number" 
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            onblur="validatePhone()"
                             placeholder="123-456-7890"
                             required
                             />
+                            <span class="error" id="phone-error"></span>
                         </td>
                     </tr>
                     <tr>
@@ -308,8 +310,10 @@
                             placeholder="name@domain.tld" 
                             title="Enter a valid email address"
                             pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,20}$"
+                            onblur="validateEmail()"
                             required
-                            >
+                            />
+                            <span class="error" id="email-error"></span>
                         </td>
                     </tr>
                     <!--Patient General Info-->
