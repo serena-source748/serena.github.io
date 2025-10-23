@@ -59,11 +59,11 @@ function validateSsn() {
 
 //zip code validation
 function validateZcode() {
-    const zipInput = document.getElementById("zcode").innerHTML = 
+    const zipInput = document.getElementById("zip").innerHTML = 
     let zip = zipInput.value.replace(/[^\d-]/g, "");
 
     if (!zip) {
-        document.getElementById("zcode-error").innerHTML = 
+        document.getElementById("zip-error").innerHTML = 
         "Zip code can't be blank";
         return false;
     }
@@ -75,7 +75,7 @@ function validateZcode() {
     }
 
     zipInput.value = zip;
-    document.getElementById("zcode-error").innerHTML = "";
+    document.getElementById("zip-error").innerHTML = "";
     return true;
 }
 
