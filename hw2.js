@@ -83,37 +83,33 @@ function validateZcode() {
 var emailR = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 //phone number validation
-function formatPhone() {
-  const phoneInput = document.getElementById("phone");
-  let value = phoneInput.value.replace(/\D/g, ""); // remove non-digits
-
-  if (value.length > 3 && value.length <= 6) {
-    value = value.slice(0, 3) + "-" + value.slice(3);
-  } else if (value.length > 6) {
-    value = value.slice(0, 3) + "-" + value.slice(3, 6) + "-" + value.slice(6, 10);
-  }
-
-  phoneInput.value = value;
-}
-
 function validatePhone() {
-  const phoneInput = document.getElementById("phone");
-  const error = document.getElementById("phone-error");
-  const value = phoneInput.value.trim();
+    const phoneInput = document.getElementById("phone");
+    let phone = phoneInput.value.replace(/[^\d]/g, "");
 
-  if (value === "") {
-    error.textContent = "Phone number cannot be blank.";
-    return false;
-  }
+    if (!phone) {
+        document.getElementById("phone-error").innerHTML =
+        "Phone number can't be blank";
+        return false;
+    }
 
-  const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
-  if (!phonePattern.test(value)) {
-    error.textContent = "Please enter a valid phone number (e.g., 123-456-7890).";
-    return false;
-  }
+    if (phone.length > 3 && phone.length <= 6) {
+        phone = phone.slice(0, 3) + "-" + phone.slice(3);
+    } else if (phone.length > 6) {
+        phone = phone.slice(0, 3) + "-" + phone.slice(3, 6) + "-" + phone.slice(6, 10);
+    }
 
-  error.textContent = "";
-  return true;
+    phoneInput.value = phone.slice(0, 12);
+
+    const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+    if (!phonePattern.test(phone)) {
+        document.getElementById("phone-error").innerHTML =
+        "Please enter a valid phone number (e.g., 123-456-7890)";
+        return false;
+    }
+
+    document.getElementById("phone-error").innerHTML = "";
+    return true;
 }
 
 //User ID validation
