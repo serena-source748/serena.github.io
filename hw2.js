@@ -59,7 +59,7 @@ function validateSsn() {
 
 //zip code validation
 function validateZip() {
-    const zipInput = document.getElementById("zip").innerHTML = 
+    const zipInput = document.getElementById("zip") = 
     let zip = zipInput.value.replace(/[^\d-]/g, "");
 
     if (!zip) {
@@ -114,38 +114,48 @@ function validatePhone() {
 
 //User ID validation
 function validateUid() {
-  const uidInput = document.getElementById("uid");
-  const error = document.getElementById("uid-error");
-  const uid = uidInput.value.toLowerCase();
-  uidInput.value = uid;
+    uid = document.getElementById("uid").value.toLowerCase();
+    document.getElementById("uid").value = uid;
 
-  if (uid.length === 0) {
-    error.innerHTML = "User ID can't be blank";
-    return false;
-  }
+    if (uid.length == 0) {
+        document.getElementById("uid-error").innerHTML =
+        "User ID can't be blank";
+        return false;
+    }
 
-  if (!isNaN(uid.charAt(0))) {
-    error.innerHTML = "User ID can't start with a number";
-    return false;
-  }
+    if (!isNaN(uid.charAt(0))) {
+        document.getElementById("uid-error").innerHTML =
+        "User ID can't start with a number";
+        return false;
+    }
 
-  const regex = /^[a-zA-Z0-9_-]+$/;
-  if (!regex.test(uid)) {
-    error.innerHTML = "User ID can only have letters, numbers, underscores, and dashes";
-    return false;
-  } else if (uid.length < 5) {
-    error.innerHTML = "User ID must be at least 5 characters";
-    return false;
-  } else if (uid.length > 30) {
-    error.innerHTML = "User ID can't exceed 30 characters";
-    return false;
-  }
-
-  error.innerHTML = "";
-  return true;
+    let regex = /^[a-zA-Z0-9_-]+$/;
+    if (!regex.test(uid)) {
+        document.getElementById("uid-error").innerHTML =
+        "User ID can only have letters, numbers, underscores, and dashes";
+        return false;
+    } else if (uid.length < 5) {
+        document.getElementById("uid-error").innerHTML =
+        "User ID must be at least 5 characters";
+        return false;
+    } else if (uid.length > 30) {
+        document.getElementById("uid-error").innerHTML =
+        "User ID can't exceed 30 characters";
+        return false;
+    } else {
+        document.getElementById("uid-error").innerHTML = "";
+        return true;
+    }
 }
 
+
 //password validation
+function validatePword() {
+    const pword = document.getElementById("pword").value;
+    const uid = document.getElementById("uid").value;
+    const error = document.getElementById("pword-error");
+    let messages = [];
+
 if (!pword.match(/[a-z]/)) {
   errorMessage.push("Enter at least one lowercase letter");
 }
