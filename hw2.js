@@ -82,6 +82,25 @@ function validateZip() {
 //email validation
 var emailR = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+function validateEmail() {
+    const emailInput = document.getElementById("email");
+    const email = emailInput.value;
+    const error = document.getElementById("email-error");
+
+    if (!email) {
+        error.innerHTML = "Email can't be blank";
+        return false;
+    }
+
+    if (!emailR.test(email)) {
+        error.innerHTML = "Please enter a valid email address (e.g., name@domain.tld)";
+        return false;
+    }
+
+    error.innerHTML = "";
+    return true;
+}
+
 //phone number validation
 function validatePhone() {
     const phoneInput = document.getElementById("phone");
@@ -154,21 +173,16 @@ function validatePword() {
     const pword = document.getElementById("pword").value;
     const uid = document.getElementById("uid").value;
     const error = document.getElementById("pword-error");
+    let messages = [];
 
-if (!pword.match(/[a-z]/)) {
-  errorMessage.push("Enter at least one lowercase letter");
-}
-if (!pword.match(/[A-Z]/)) {
-  errorMessage.push("Enter at least one uppercase letter");
-}
-if (!pword.match(/[0-9]/)) {
-  errorMessage.push("Enter at least one number");
-}
-if (!pword.match(/[!@#$%&*_\-\.+()]/)) {
-  errorMessage.push("Enter at least one special character");
-}
-if (pword.includes(uid)) {
-  errorMessage.push("Password can't contain user ID");
+    if (!pword.match(/[a-z]/)) messages.push("Enter at least one lowercase letter");
+    if (!pword.match(/[A-Z]/)) messages.push("Enter at least one uppercase letter");
+    if (!pword.match(/[0-9]/)) messages.push("Enter at least one number");
+    if (!pword.match(/[!@#$%&*_\-\.+()]/)) messages.push("Enter at least one special character");
+    if (pword.includes(uid)) messages.push("Password can't contain user ID");
+
+    error.innerHTML = messages.join("<br>");
+    return messages.length === 0;
 }
 
 //confirm password validation
