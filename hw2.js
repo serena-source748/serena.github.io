@@ -59,7 +59,7 @@ function validateSsn() {
 
 //zip code validation
 function validateZip() {
-    const zipInput = document.getElementById("zip") = 
+    const zipInput = document.getElementById("zip");
     let zip = zipInput.value.replace(/[^\d-]/g, "");
 
     if (!zip) {
@@ -154,7 +154,6 @@ function validatePword() {
     const pword = document.getElementById("pword").value;
     const uid = document.getElementById("uid").value;
     const error = document.getElementById("pword-error");
-    let messages = [];
 
 if (!pword.match(/[a-z]/)) {
   errorMessage.push("Enter at least one lowercase letter");
