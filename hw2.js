@@ -1,8 +1,8 @@
  /*
 Name: Serena Scaria
 Date created: October 16, 2025
-Date last edited: October 16, 2025
-Version: 1.0
+Date last edited: October 26, 2025
+Version: 1.12
 Description: Homework 2 HTML Patient Registration Form
 */
 
@@ -58,7 +58,7 @@ function validateSsn() {
 }
 
 //zip code validation
-function validateZcode() {
+function validateZip() {
     const zipInput = document.getElementById("zip").innerHTML = 
     let zip = zipInput.value.replace(/[^\d-]/g, "");
 
@@ -165,16 +165,17 @@ if (pword.includes(uid)) {
 //confirm password validation
 function confirmPword() {
   const pword1 = document.getElementById("pword").value;
-  const pword2 = document.getElementById("con_pword").value;
-  const errorElement = document.getElementById("pword2-error");
+  const pword2 = document.getElementById("pword2").value;
 
   if (pword1 !== pword2) {
-    errorElement.textContent = "Passwords don't match";
+    document.getElementById("pword2-error").innerHTML = 
+    "Passwords don't match";
     return false;
+  } else {
+    document.getElementById("pword2-error").innerHTML = 
+    "Passwords match";
+    return true;
   }
-
-  errorElement.textContent = "Passwords match";
-  return true;
 }
 
 //review button
