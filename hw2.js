@@ -3,7 +3,7 @@ Name: Serena Scaria
 Date created: October 16, 2025
 Date last edited: October 26, 2025
 Version: 1.12
-Description: Homework 2 HTML Patient Registration Form
+Description: Homework 2 JS Patient Registration Form
 */
 
 //date code
