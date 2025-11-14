@@ -317,8 +317,8 @@ function validateFname() {
           if (!fname.match(namePattern)) {
           document.getElementById("fname-error").innerHTML = "Letters, apostrophes, and dashes only.";
           return false;
-      } else if (fname.length < 2) {
-           document.getElementById("fname-error").innerHTML = "First name cannot be less than 2 characters.";
+      } else if (fname.length < 1) {
+           document.getElementById("fname-error").innerHTML = "First name cannot be less than 1 character.";
            return false;
       } else if (fname > 30) {
            document.getElementById("fname-error").innerHTML = "First name cannot be more than 30 characters.";
@@ -358,8 +358,8 @@ function validateLname() {
           if (!lname.match(namePattern)) {
           document.getElementById("lname-error").innerHTML = "Letters, apostrophes, and dashes only.";
           return false;
-      } else if (lname.length < 1) {
-           document.getElementById("lname-error").innerHTML = "Last name cannot be less than 1 characters.";
+      } else if (lname.length < 2) {
+           document.getElementById("lname-error").innerHTML = "Last name cannot be less than 2 characters.";
            return false;
       } else if (lname > 30) {
            document.getElementById("lname-error").innerHTML = "Last name cannot be more than 30 characters.";
