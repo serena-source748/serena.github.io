@@ -232,7 +232,67 @@ function removeReview() {
    document.getElementById("showInput").innerHTML = "";
 }
 
+//alert box functionality
+function showAlert() {
+    var alertBox = document.getElementById("alert-box");
+    var closeAlert = document.getElementById("close-alert");
 
+    alertBox.style.display = "block";
+    closeAlert.onclick = function() {
+        alertBox.style.display = "none";
+    };
+}
+
+//Validation of all fields
+function validateEverything() {
+    let valid = true;
+
+    if (!validateFname()) {
+        valid = false;
+    }
+     if (!validateMname()) {
+        valid = false;
+    }
+     if (!validateLname()) {
+        valid = false;
+    }
+     if (!validateDob()) {
+        valid = false;
+    }
+     if (!validateSsn()) {
+        valid = false;
+    }
+     if (!validateAddress1()) {
+        valid = false;
+    }
+     if (!validateCity()) {
+        valid = false;
+    }
+     if (!validateZip()) {
+        valid = false;
+    }
+     if (!validateEmail()) {
+        valid = false;
+    }
+     if (!validatePhone()) {
+        valid = false;
+    }
+     if (!validateUid()) {
+        valid = false;
+    }
+     if (!validatePword()) {
+        valid = false;
+    }
+     if (!confirmPword()) {
+        valid = false;
+    }
+     if (valid) {
+        document.getElementById("submit").disabled = false;
+     } else{
+        showAlert();
+     }
+    }
+ 
      
     
   
