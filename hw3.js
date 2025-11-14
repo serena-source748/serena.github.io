@@ -320,7 +320,7 @@ function validateFname() {
       } else if (fname.length < 1) {
            document.getElementById("fname-error").innerHTML = "First name cannot be less than 1 character.";
            return false;
-      } else if (fname > 30) {
+      } else if (fname.length > 30) {
            document.getElementById("fname-error").innerHTML = "First name cannot be more than 30 characters.";
            return false;
       } else {
@@ -335,7 +335,7 @@ function validateMinitial() {
     minitial = document.getElementById("minitial").value.trim();
     var namePattern = /^[A-Z]+$/;
  
-    minitial = mini.toUpperCase();
+    minitial = minitital.toUpperCase();
     document.getElementById("minitial").value = minitial;
 
     if (!minitial.match(namePattern)) {
