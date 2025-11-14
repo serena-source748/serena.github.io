@@ -250,7 +250,7 @@ function validateEverything() {
     if (!validateFname()) {
         valid = false;
     }
-     if (!validateMname()) {
+     if (!validateMinitial()) {
         valid = false;
     }
      if (!validateLname()) {
