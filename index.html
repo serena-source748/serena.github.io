@@ -65,7 +65,7 @@
                                 id="minitial" 
                                 maxlength="1" 
                                 title="Letters only"
-                                pattern="[a-zA-Z']{0,1}"
+                                pattern="[A-Z]{0,1}"
                                 onblur="validateMinitial()"
                                 placeholder="M"
                                 />
@@ -154,7 +154,7 @@
                             maxlength="11"
                             minlength="9"
                             title="Numbers only"
-                            pattern="\d{3}-\d{2}-\d{4}" 
+                            pattern="^\d{3}-?\d{2}-?\d{4}$" 
                             placeholder="123-45-6789"
                             onblur="validateSsn()"
                             required
@@ -205,6 +205,7 @@
                             minlength="2"
                             required 
                             />
+                            <span class="error" id="city-error"></span>
                         </td>
                         <td><label for="state">State:</label></td>
                         <td>
@@ -405,8 +406,8 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                                <input type="submit" name="submit">
-                                <input type="reset" name="reset">
+                                <input type="submit" id="submit" name="submit">
+                                <input type="reset" id="reset" name="reset">
                                 <input 
                                     type="button" 
                                     name="review"
