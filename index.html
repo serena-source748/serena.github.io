@@ -413,7 +413,12 @@
                                     id="review"
                                     value="Review"
                                     onclick="reviewInput()"
-                                />
+                                >
+                                <input type="button"
+                                    name="validate"
+                                    id="validate"
+                                    value="Validate"
+                                    onclick="validateEverything()">
                         </td>
                     </tr>
                 </table>
@@ -444,6 +449,15 @@
         </footer>
         <!-- JavaScript file -->
         <script src="hw3.js"></script>
+
+        <!--Alert box-->
+        <div id="alert-box">
+            <div id="alert-content">
+                <h4>Please fill out all required fields: </h4>
+                <button id="close-alert">OK</button>
+            </div>
+        </div>
+        
     </body>
 </html>
 
