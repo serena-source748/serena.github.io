@@ -335,7 +335,7 @@ function validateMinitial() {
     minitial = document.getElementById("minitial").value.trim();
     var namePattern = /^[A-Z]+$/;
  
-    minitial = minitital.toUpperCase();
+    minitial = minitial.toUpperCase();
     document.getElementById("minitial").value = minitial;
 
     if (!minitial.match(namePattern)) {
