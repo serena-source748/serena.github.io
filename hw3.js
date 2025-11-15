@@ -361,7 +361,7 @@ function validateLname() {
       } else if (lname.length < 2) {
            document.getElementById("lname-error").innerHTML = "Last name cannot be less than 2 characters.";
            return false;
-      } else if (lname > 30) {
+      } else if (lname.length > 30) {
            document.getElementById("lname-error").innerHTML = "Last name cannot be more than 30 characters.";
            return false;
       } else {
