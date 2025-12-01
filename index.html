@@ -30,6 +30,18 @@
             </table>
         </header>
     <hr>
+        
+    <!--welcome message-->
+    <center>
+        <span id="welcome1"></span>
+        <span id="welcome2"></span>
+    </center>
+        
+    <!--iframe-->
+    <div class="iframe-container">
+        <iframe class="frame" src="https://www.youtube.com/embed?listType=user_uploads&list=TexasHealthResources" frameborder="0"></iframe>
+    </div>
+        
     <!--form-->
     <form id="signup" action="thankyou.html">
         <center>
@@ -404,6 +416,21 @@
                             <span class="error" id="pword2-error"></span>
                         </td>
                     </tr>
+                    <!--Remember me checkbox-->
+                    <tr>
+                        <td class="td1">
+                            <label for="remember-me">Remember Me:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="checkbox"
+                                id="remember-me"
+                                name="remember-me"
+                                checked
+                            />
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td colspan="4">
                                 <input type="submit" id="submit" name="submit">
