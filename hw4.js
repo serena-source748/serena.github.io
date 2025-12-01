@@ -504,6 +504,22 @@ function validateLname() {
     }
 }    
 
+//Address validation
+function validateAddress1() {
+    const address = document.getElementById("address1").value.trim();
+    
+    if (!address) {
+        document.getElementById("address1-error").innerHTML = "Address can't be blank";
+        return false;
+    } else {
+        document.getElementById("address1-error").innerHTML = "";
+        return true;
+    }
+}
 
+function validateAddress2() {
+    // Address 2 is optional, so always return true
+    return true;
+}
 
  
