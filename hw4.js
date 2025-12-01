@@ -383,8 +383,38 @@ document.getElementById("remember-me").addEventListener("change", function() {
     }
 });
 
-//Event listener for DOM Content Loaded
+//Fetch API states list
+function loadStates() {
+    const stateSelect = document.getElementById("state");
+
+    fetch('states.json')
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
+        .then(states => {
+            states.forEach(state => {
+                const option = document.createElement("option");
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error("Error loading states:", error);
+            const option = document.createElement("option");
+            option.value = "";
+            option.textContent = "Error loading states";
+            stateSelect.appendChild(option);
+        });
+}
+
+//Event listener for DOM Content Loaded - COMBINED
 document.addEventListener("DOMContentLoaded", function() {
+    // Load states dropdown
+    loadStates();
+    
+    // Handle remember me cookies
     const rememberMe = document.getElementById("remember-me").checked;
     if (!rememberMe) {
         deleteAllCookies();
@@ -473,36 +503,7 @@ function validateLname() {
       }
     }
 }    
-//Fetch API states list
-function loadStates() {
-    const stateSelect = document.getElementById("state");
 
-    fetch('states.json')
-        .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.json();
-        })
-        .then(states => {
-            states.forEach(state => {
-                const option = document.createElement("option");
-                option.value = state;
-                option.textContent = state;
-                stateSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error("Error loading states:", error);
-            const option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Error loading states";
-            stateSelect.appendChild(option);
-        });
-}
-
-//Call the function after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
-    loadStates();
-});
 
 
  
