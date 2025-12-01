@@ -9,6 +9,10 @@ Description: Homework 4 CSS Patient Registration Form
 header {
     width: 100%;
     background-color:lavender;
+    position:sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 h1, h2 {
@@ -217,6 +221,40 @@ td.output {
      border-radius: 5px;
      color: red;
 }
+
+/*iframe*/
+.iframe-container {
+     position: absolute;
+     top: 25%;
+     right: 15px;
+     width: 25%;
+     height: 100%;
+     overflow: hidden;
+     box-sizing: border-box;
+
+.iframe-container iframe {
+     width: 95%;
+     height: 20%;
+     border: 1px solid black;
+}
+
+/*welcome messages*/
+#welcome1 {
+     margin-top: 20px;
+     font-size: 20px;
+     text-align: center;
+     font-family: "optima", sans-serif;
+     font-weight: normal;
+}
+
+#welcome2 {
+     margin-top: 20px;
+     font-size: 20px;
+     text-align: center;
+     font-family: "optima", sans-serif;
+     font-weight: normal;
+}
+
 
 
 
