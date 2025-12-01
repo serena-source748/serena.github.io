@@ -250,7 +250,7 @@ function validateEverything() {
     if (!validateFname()) {
         valid = false;
     }
-     if (!validateMinitial()) {
+      if (!validateMinitial()) {
         valid = false;
     }
      if (!validateLname()) {
@@ -301,10 +301,10 @@ function setCookie(name, cvalue, expiryDays) {
     document.cookie = name + "=" + cvalue + ";" + expires + ";path=/";
 }
 function getCookie(name) {
-    var cookieName = name + "+";
+    var cookieName = name + "=";
     var cookies = document.cookie.split(';');
 
-    for (var i = 0; i < cookie.length; i++) {
+    for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
         if (cookie.indexOf(cookieName) ==0) {
         return cookie.substring(cookieName.length, cookie.length);
@@ -431,10 +431,15 @@ function validateFname() {
 //Middle name validation
 function validateMinitial() {
     minitial = document.getElementById("minitial").value.trim();
-    var namePattern = /^[A-Z]+$/;
+    var namePattern = /^[A-Z]$/;
  
     minitial = minitial.toUpperCase();
     document.getElementById("minitial").value = minitial;
+ 
+    if (minitial == "") {
+    document.getElementById("minitial-error").innerHTML = "";
+        return true;
+    }
 
     if (!minitial.match(namePattern)) {
         document.getElementById("minitial-error").innerHTML = "Middle initial must be a single uppercase letter";
