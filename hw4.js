@@ -474,11 +474,14 @@ function validateLname() {
     }
 }    
 //Fetch API states list
-document.addEventListener("DOMContentLoaded", function() {
+function loadStates() {
     const stateSelect = document.getElementById("state");
 
     fetch('states.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
         .then(states => {
             states.forEach(state => {
                 const option = document.createElement("option");
@@ -494,6 +497,12 @@ document.addEventListener("DOMContentLoaded", function() {
             option.textContent = "Error loading states";
             stateSelect.appendChild(option);
         });
+}
+
+//Call the function after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    loadStates();
 });
+
 
  
