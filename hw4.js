@@ -473,5 +473,27 @@ function validateLname() {
       }
     }
 }    
-  
+//Fetch API states list
+document.addEventListener("DOMContentLoaded", function() {
+    const stateSelect = document.getElementById("state");
+
+    fetch('states.json')
+        .then(response => response.json())
+        .then(states => {
+            states.forEach(state => {
+                const option = document.createElement("option");
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error("Error loading states:", error);
+            const option = document.createElement("option");
+            option.value = "";
+            option.textContent = "Error loading states";
+            stateSelect.appendChild(option);
+        });
+});
+
  
