@@ -335,30 +335,26 @@ document.getElementById("remember-me").addEventListener("change", function() {
 });
 
 //Fetch API states list
-function loadStates() {
-    const stateSelect = document.getElementById("state");
-
-    fetch('states.json')
-        .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.json();
-        })
-        .then(states => {
-            states.forEach(state => {
-                const option = document.createElement("option");
-                option.value = state;
-                option.textContent = state;
-                stateSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error("Error loading states:", error);
-            const option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Error loading states";
-            stateSelect.appendChild(option);
-        });
-}
+fetch('states.json')
+  .then(response => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+  })
+  .then(states => {
+      states.forEach(state => {
+          const option = document.createElement("option");
+          option.value = state;
+          option.textContent = state;
+          stateSelect.appendChild(option);
+      });
+  })
+  .catch(error => {
+      console.error("Error loading states:", error);
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "Error loading states";
+      stateSelect.appendChild(option);
+  });
 
 //Event listener for DOM Content Loaded - COMBINED
 document.addEventListener("DOMContentLoaded", function() {
