@@ -7,9 +7,11 @@ Description: Homework 4 JS Patient Registration Form
 */
 
 //date code
-const d = new Date();
-let text = d.toLocaleDateString();
-document.getElementById("today").innerHTML = text;
+document.addEventListener("DOMContentLoaded", function() {
+    const d = new Date();
+    let text = d.toLocaleDateString();
+    document.getElementById("today").innerHTML = text;
+});
 
 //household slider code
 let slider = document.getElementById("household");
@@ -335,26 +337,30 @@ document.getElementById("remember-me").addEventListener("change", function() {
 });
 
 //Fetch API states list
-fetch('states.json')
-  .then(response => {
-      if (!response.ok) throw new Error("Network response was not ok");
-      return response.json();
-  })
-  .then(states => {
-      states.forEach(state => {
+document.addEventListener("DOMContentLoaded", function() {
+    const stateSelect = document.getElementById("state");
+
+    fetch('states.json')
+      .then(response => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.json();
+      })
+      .then(states => {
+          states.forEach(state => {
+              const option = document.createElement("option");
+              option.value = state;
+              option.textContent = state;
+              stateSelect.appendChild(option);
+          });
+      })
+      .catch(error => {
+          console.error("Error loading states:", error);
           const option = document.createElement("option");
-          option.value = state;
-          option.textContent = state;
+          option.value = "";
+          option.textContent = "Error loading states";
           stateSelect.appendChild(option);
       });
-  })
-  .catch(error => {
-      console.error("Error loading states:", error);
-      const option = document.createElement("option");
-      option.value = "";
-      option.textContent = "Error loading states";
-      stateSelect.appendChild(option);
-  });
+});
 
 //Event listener for DOM Content Loaded - COMBINED
 document.addEventListener("DOMContentLoaded", function() {
