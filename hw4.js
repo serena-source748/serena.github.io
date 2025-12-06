@@ -298,6 +298,7 @@ if (firstName !== "") {
     });
     location.reload();
 });
+}
 
 
 //Function to delete cookies
