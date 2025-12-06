@@ -238,95 +238,120 @@ function showAlert() {
     };
 }
 
-//Cookie for remembering info input
+//Cookie for first name only (tracking user)
 function setCookie(name, cvalue, expiryDays) {
     var day = new Date();
     day.setTime(day.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + day.toUTCString();
     document.cookie = name + "=" + cvalue + ";" + expires + ";path=/";
 }
+
 function getCookie(name) {
     var cookieName = name + "=";
     var cookies = document.cookie.split(';');
 
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
-        if (cookie.indexOf(cookieName) ==0) {
-        return cookie.substring(cookieName.length, cookie.length);
+        if (cookie.indexOf(cookieName) == 0) {
+            return cookie.substring(cookieName.length, cookie.length);
         }
     }
- return "";
+    return "";
 }
 
-var inputs = [
- {id:"fname", cookieName:"firstName"},
- {id:"minitial", cookieName:"middleInitial"},
- {id:"lname", cookieName:"lastName"},
- {id:"dob", cookieName:"dob"},
- {id:"ssn", cookieName:"ssn"},
- {id:"address1", cookieName:"address1"},
- {id:"city", cookieName:"city"},
- {id:"zip", cookieName:"zipCode"},
- {id:"email", cookieName:"email"},
- {id:"phone", cookieName:"phone"},
- {id:"uid", cookieName:"userId"}
- ]
+function deleteCookie(name) {
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+}
 
+//Local Storage for all other non-secure form data
+function setStorage(name, value) {
+    localStorage.setItem(name, value);
+}
+
+function getStorage(name) {
+    return localStorage.getItem(name) || "";
+}
+
+function deleteAllStorage() {
+    localStorage.clear();
+}
+
+//List of inputs - separate first name (cookie) from others (localStorage)
+var inputs = [
+    {id:"minitial", storageName:"middleInitial"},
+    {id:"lname", storageName:"lastName"},
+    {id:"dob", storageName:"dob"},
+    {id:"ssn", storageName:"ssn"},
+    {id:"address1", storageName:"address1"},
+    {id:"city", storageName:"city"},
+    {id:"zip", storageName:"zipCode"},
+    {id:"email", storageName:"email"},
+    {id:"phone", storageName:"phone"},
+    {id:"uid", storageName:"userId"}
+];
+
+// Handle First Name separately (uses cookie)
+var fnameElement = document.getElementById("fname");
+var firstNameCookie = getCookie("firstName");
+if (firstNameCookie !== "") {
+    fnameElement.value = firstNameCookie;
+}
+fnameElement.addEventListener("input", function() {
+    setCookie("firstName", fnameElement.value, 2); // 48 hours
+});
+
+// Handle all other fields with localStorage
 inputs.forEach(function (input) {
     var inputElement = document.getElementById(input.id);
 
- // Prefill input fields
- var cookieValue = getCookie(input.cookieName);
- if (cookieValue !=="") {
-    inputElement.value = cookieValue;
- }
+    // Prefill input fields from localStorage
+    var storageValue = getStorage(input.storageName);
+    if (storageValue !== "") {
+        inputElement.value = storageValue;
+    }
 
- // Set a cookie when the input field changes
- inputElement.addEventListener("input", function() {
-     setCookie(input.cookieName, inputElement.value, 30);
- });
+    // Save to localStorage when the input field changes
+    inputElement.addEventListener("input", function() {
+        setStorage(input.storageName, inputElement.value);
+    });
 });
 
-//greet user with name
+//Greet user with name (from cookie)
 var firstName = getCookie("firstName");
 if (firstName !== "") {
-    document.getElementById("welcome1").innerHTML = "Welcome back," + firstName + "!<br>";
+    document.getElementById("welcome1").innerHTML = "Welcome back, " + firstName + "!<br>";
     document.getElementById("welcome2").innerHTML = "<a href='#' id='new-user'>Not " + firstName + "? Click here to start a new form.</a>";
     document.getElementById("new-user").addEventListener("click", function() {
-    inputs.forEach(function(input) {
-        setCookie(input.cookieName, "", -1);
+        // Clear both cookie and localStorage
+        deleteCookie("firstName");
+        deleteAllStorage();
+        location.reload();
     });
-    location.reload();
-});
+} else {
+    document.getElementById("welcome1").innerHTML = "Welcome, New User!<br>";
 }
 
-
-//Function to delete cookies
-function deleteAllCookies() {
- document.cookie.split(";").forEach(function (cookie) {
-    let eqPos = cookie.indexOf("=");
-    let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
- });
-}
-
-//Remeber me checkbox validation
+//Remember me checkbox
 document.getElementById("remember-me").addEventListener("change", function() {
     const rememberMe = this.checked;
 
     if(!rememberMe) {
-      //if "remember me" unchecked, delete cookies
-     deleteAllCookies();
-     console.log("All cookies deleted because 'Remember Me' is unchecked.");
+        // If unchecked, delete cookie and localStorage
+        deleteCookie("firstName");
+        deleteAllStorage();
+        console.log("All data deleted because 'Remember Me' is unchecked.");
     } else {
-      // if "remember me" is checked or rechecked, save cookies
-     inputs.forEach(function(input) {
-        const inputElement = document.getElementById(input.id);
-        if (inputElement.value.trim() !== "") {
-           setCookie (input.cookieName, inputElement.value, 30);
+        // If checked, save everything
+        if (fnameElement.value.trim() !== "") {
+            setCookie("firstName", fnameElement.value, 2);
         }
-     });
-     console.log("Cookies saved because 'Remember Me' is checked.");
+        inputs.forEach(function(input) {
+            const inputElement = document.getElementById(input.id);
+            if (inputElement.value.trim() !== "") {
+                setStorage(input.storageName, inputElement.value);
+            }
+        });
+        console.log("Data saved because 'Remember Me' is checked.");
     }
 });
 
@@ -481,7 +506,7 @@ function validateEverything() {
      }
     } 
 
-//Event listener for DOM Content Loaded - COMBINED
+//DOM Event Listener
 document.addEventListener("DOMContentLoaded", function() {
     // Date code
     const d = new Date();
@@ -507,9 +532,10 @@ document.addEventListener("DOMContentLoaded", function() {
           console.error("Error loading states:", error);
       });
     
-    // Handle remember me cookies
+    // Handle remember me - clear if unchecked
     const rememberMe = document.getElementById("remember-me").checked;
     if (!rememberMe) {
-        deleteAllCookies();
+        deleteCookie("firstName");
+        deleteAllStorage();
     }
 });
